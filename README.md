@@ -1,6 +1,6 @@
 It is never too easy to spin off a test hadoop, spark or hive cluster with few nodes virtually on your local computer!  I have provided few Vagrant-puppet modules for you to do it yourself.  To try any of the modules, please make sure you have these:
 
-##### Prerequisit:
+##### Prerequisite:
 
 1) download VirtualBox first at: https://www.virtualbox.org/wiki/Downloads and install it.
 
