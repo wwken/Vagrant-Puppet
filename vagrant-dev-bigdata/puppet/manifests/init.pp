@@ -42,7 +42,7 @@ package { $dependencies: ensure => 'present' }
 include apt
 apt::source {'cdh5':
   location  => 'http://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh',
-  release => 'trusty-cdh5.3.0',
+  release => 'trusty-cdh5.5',
   repos   => 'contrib',
   architecture  => 'amd64',
   include_src   => false,
