@@ -1,0 +1,63 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # All Vagrant configuration is done here. The most common configuration
+  # options are documented and commented below. For a complete reference,
+  # please see the online documentation at vagrantup.com.
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "precise64"
+  config.vm.hostname = "kenbox1"
+
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system. Added both boxes for virtualbox 
+  # and vmware fusion providers
+  #config.vm.box_url = "http://files.vagrantup.com/precise64_vmware_fusion.box"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.define "kenbox1" do |kenbox1|
+     kenbox1.vm.provision :shell do |sh|
+        sh.inline = "echo HELLO KEN"
+     end
+  end
+  # Boot with a GUI so you can see the screen. (Default is headless)
+  # config.vm.boot_mode = :gui
+
+  # Assign this VM to a host-only network IP, allowing you to access it
+  # via the IP. Host-only networks can talk to the host machine as well as
+  # any other machines on the same network, but cannot be accessed (through this
+  # network interface) by any external networks.
+  config.vm.hostname = "ken-box.local"
+  config.vm.network :private_network, ip: "192.168.43.10"
+
+  config.vm.provider "virtualbox" do |v|
+    v.name = "ken-box-2.local"
+    v.customize [
+       "modifyvm", :id, 
+       "--memory", 2048
+    ]
+  end
+
+  # Forward a port from the guest to the host, which allows for outside
+  # computers to access the VM, whereas host only networking does not.
+  #config.vm.network "forwarded_port", guest: 8182, host: 8182
+  #config.vm.network "forwarded_port", guest: 2480, host: 2480
+
+  # Share an additional folder to the guest VM. The first argument is
+  # an identifier, the second is the path on the guest to mount the
+  # folder, and the third is the path on the host to the actual folder.
+  # config.vm.share_folder "v-data", "/vagrant_data", "../data"
+  #config.vm.share_folder "v-root" "/vagrant", ".", :nfs => true
+
+  # Provision with puppet
+  config.vm.provision :shell, :inline => "apt-get update"
+  
+   config.vm.provision :puppet, :options => ['--verbose', '--debug'] do |puppet|
+     puppet.facter = {'hostname' => 'ken-box-2.local'}
+     puppet.manifests_path = "manifests"
+     puppet.manifest_file  = "site.pp"
+     #puppet.module_path = "modules"
+   end
+end

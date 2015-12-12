@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!-- NOTE:  This file is managed by Puppet. -->
+
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://<%= @ha_enabled ? @nameservice_id : @primary_namenode_host %>/</value>
+  </property>
+
+<% if @io_file_buffer_size -%>
+  <property>
+    <name>io.file.buffer.size</name>
+    <value><%= @io_file_buffer_size %></value>
+  </property>
+<% end -%>
+
+<% if @webhdfs_enabled or @httpfs_enabled -%>
+  <!-- Hue proxy user -->
+  <property>
+    <name>hadoop.proxyuser.hue.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hue.groups</name>
+    <value>*</value>
+  </property>
+
+  <!-- Oozie proxy user -->
+  <property>
+    <name>hadoop.proxyuser.oozie.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.oozie.groups</name>
+    <value>*</value>
+  </property>
+<% end -%>
+
+<% if @httpfs_enabled -%>
+  <property>
+    <name>hadoop.proxyuser.httpfs.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.httpfs.groups</name>
+    <value>*</value>
+  </property>
+<% end -%>
+
+  <!-- mapred proxy user -->
+  <property>
+    <name>hadoop.proxyuser.mapred.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.mapred.groups</name>
+    <value>*</value>
+  </property>
+
+<% if @net_topology_script_template -%>
+  <!-- Script used to map nodes to rack or rows in datacenter. -->
+  <property>
+      <name>net.topology.script.file.name</name>
+      <value><%= @net_topology_script_path %></value>
+  </property>
+<% end -%>
+
+</configuration>

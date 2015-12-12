@@ -1,0 +1,27 @@
+93600e45b006eeebfa012b4f8ffd7ca31643d330		branch 'master' of https://github.com/puppetlabs/puppetlabs-stdlib
+8fdd59547d89767cef1a58fdabeff25d51692cbf	not-for-merge	branch '2.1.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+73261f14ad07b158e4ab68dc7d0579f7cd6a9f6a	not-for-merge	branch '2.2.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+d2798b721a68d0e69fd22c4c806d1ae11c759f48	not-for-merge	branch '2.3.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+d6d23b495cda0e154b4e73982acc43e586564c0e	not-for-merge	branch '2.4.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+1bb4c7a79ea8eb47e08e859d82ffbb4c4be33592	not-for-merge	branch '2.5.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+2b7591896d790a17f902fbafc2aed8743dc674f2	not-for-merge	branch '2.6.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+9e8c60a8b73fd96393b08d690c7197e62aae623e	not-for-merge	branch '3.0.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+a3c600d5f277f0c9d91c98ef67daf7efc9eed3c5	not-for-merge	branch '3.1.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+c0b5ce3b015db9f50d486040c16d8de56c6b4991	not-for-merge	branch '3.2.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+9a1d8be10dcb0358f13a09f3ac78677c0b6cc821	not-for-merge	branch '4.10.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+7d4fa05da13577072defe991b9de8b96ac4c3be7	not-for-merge	branch '4.2.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+81ebfb4319fcbb53d58d10e32a0d21b39e837df0	not-for-merge	branch '4.3.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+ded4d516f15443ef145d64ef5e2b198578f6a190	not-for-merge	branch '4.4.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+7a91f209908f78d305e4de56ccc2f42b2b5953af	not-for-merge	branch '4.5.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+73474b00b5ae3cbccec6cd0711311d6450139e51	not-for-merge	branch '4.6.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+956c329a8a2f497b0953e47c307e4cc60b7044e9	not-for-merge	branch '4.7.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+57275061ab63f26c0fc08361cb0d838708b1003c	not-for-merge	branch '4.8.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+f684fb817c1ebef4ed53f36de6b692cbf5a597e3	not-for-merge	branch '4.9.x' of https://github.com/puppetlabs/puppetlabs-stdlib
+c0ac470e764841b0de88dbabade342dc2c1b193e	not-for-merge	branch 'anticipation' of https://github.com/puppetlabs/puppetlabs-stdlib
+06845a05e2b5845eda0da03219cf8d266d4ec24b	not-for-merge	branch 'revert-375-feature/master/validate_integer_and_numeric' of https://github.com/puppetlabs/puppetlabs-stdlib
+650216e5334d6bbcfad3d1ac51868b39f40363bd	not-for-merge	branch 'travisci_update' of https://github.com/puppetlabs/puppetlabs-stdlib
+3539ae94793357abf848549875bf9b8fd77fbbd0	not-for-merge	tag '4.6.0' of https://github.com/puppetlabs/puppetlabs-stdlib
+1f910979fa11290fd001c0224231780d6ecafde4	not-for-merge	tag '4.8.0' of https://github.com/puppetlabs/puppetlabs-stdlib
+9ffe16f15a51df69adf3226a83bf40525f5f8ff2	not-for-merge	tag '4.9.1' of https://github.com/puppetlabs/puppetlabs-stdlib
+36f87a3f862943075d93dcc17f77aa1babd21d67	not-for-merge	tag '4.7.0' of https://github.com/puppetlabs/puppetlabs-stdlib
+2031075db2aaf108d6331ca8a669776b81f0ba79	not-for-merge	tag '4.9.0' of https://github.com/puppetlabs/puppetlabs-stdlib

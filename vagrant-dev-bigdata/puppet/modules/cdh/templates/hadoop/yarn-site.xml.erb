@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!-- NOTE:  This file is managed by Puppet. -->
+
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value><%= @primary_namenode_host %></value>
+  </property>
+
+<% if @fair_scheduler_template -%>
+  <property>
+    <name>yarn.resourcemanager.scheduler.class</name>
+    <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</value>
+  </property>
+
+  <property>
+    <name>yarn.scheduler.fair.allocation.file</name>
+    <value><%= @config_directory %>/fair-scheduler.xml</value>
+    <description>
+      Path to allocation file. An allocation file is an XML manifest describing queues
+      and their properties, in addition to certain policy defaults. This file must be
+      in XML format as described in the next section.
+    </description>
+  </property>
+
+  <property>
+    <name>yarn.scheduler.fair.user-as-default-queue</name>
+    <value>false</value>
+    <description>
+      Whether to use the username associated with the allocation as the default queue
+      name, in the event that a queue name is not specified. If this is set to "false"
+      or unset, all jobs have a shared default queue, called "default". Defaults to true.
+    </description>
+  </property>
+<% end -%>
+
+  <property>
+    <name>yarn.nodemanager.localizer.address</name>
+    <value>0.0.0.0:8040</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.address</name>
+    <value>0.0.0.0:8041</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.webapp.address</name>
+    <value>0.0.0.0:8042</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+  </property>
+
+
+<% if @datanode_mounts -%>
+  <property>
+    <description>List of directories to store localized files in.</description>
+    <name>yarn.nodemanager.local-dirs</name>
+    <value><%= @datanode_mounts.collect { |mount| mount + "/" + @yarn_local_path }.join(',') %></value>
+  </property>
+
+  <property>
+    <description>Where to store container logs.</description>
+    <name>yarn.nodemanager.log-dirs</name>
+    <value><%= @datanode_mounts.collect { |mount| mount + "/" + @yarn_logs_path}.join(',') %></value>
+  </property>
+<% end -%>
+
+<% if @yarn_nodemanager_resource_memory_mb -%>
+  <property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value><%= @yarn_nodemanager_resource_memory_mb %></value>
+  </property>
+<% end -%>
+
+<% if @yarn_scheduler_minimum_allocation_mb -%>
+  <property>
+    <name>yarn.scheduler.minimum-allocation-mb</name>
+    <value><%= @yarn_scheduler_minimum_allocation_mb %></value>
+  </property>
+<% end -%>
+
+<% if @yarn_scheduler_maximum_allocation_mb -%>
+  <property>
+    <name>yarn.scheduler.maximum-allocation-mb</name>
+    <value><%= @yarn_scheduler_maximum_allocation_mb %></value>
+  </property>
+<% end -%>
+
+  <property>
+    <name>yarn.log-aggregation-enable</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <description>Where to aggregate logs to.</description>
+    <name>yarn.nodemanager.remote-app-log-dir</name>
+    <value>/var/log/hadoop-yarn/apps</value>
+  </property>
+
+
+  <property>
+      <name>yarn.app.mapreduce.am.staging-dir</name>
+      <value>/user</value>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.nodes.exclude-path</name>
+    <value><%= @config_directory %>/hosts.exclude</value>
+    <description>
+      A file that contains a list of NodeManagers to exclude.
+      This is useful for decommissioning nodes.
+    </description>
+  </property>
+
+  <property>
+    <description>Classpath for typical applications.</description>
+     <name>yarn.application.classpath</name>
+     <value>
+        $HADOOP_CONF_DIR,
+        $HADOOP_COMMON_HOME/*,$HADOOP_COMMON_HOME/lib/*,
+        $HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,
+        $HADOOP_MAPRED_HOME/*,$HADOOP_MAPRED_HOME/lib/*,
+        $HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*
+     </value>
+  </property>
+</configuration>

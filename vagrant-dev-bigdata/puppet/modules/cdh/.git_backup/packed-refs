@@ -1,0 +1,4 @@
+# pack-refs with: peeled fully-peeled 
+26b019f4c160d3adc7b2e84f46c25f75a3f6e9e0 refs/remotes/origin/cdh4
+ab1114675992154fe3b3d5cad8205c5e199617e9 refs/remotes/origin/hdfs_resource
+b6d77700666763a832ffa31bb1dea54deedbb79d refs/remotes/origin/master
