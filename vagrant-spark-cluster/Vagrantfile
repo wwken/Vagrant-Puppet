@@ -62,8 +62,10 @@ puts "vagrant conf local repo enabled:  #{enable_local_repo}"
 # JDK package name
 jdk = CONF['jdk']
 
+CLUSTER_PREFIX = "spark"
+
 # master node hostname
-bigtop_master = "bigtop1.vagrant"
+bigtop_master = "spark1.vagrant"
 
 $script = <<SCRIPT
 service iptables stop
@@ -86,7 +88,7 @@ EOF
 SCRIPT
 
 VAGRANTFILE_API_VERSION = "2"
-CLUSTER_PREFIX = "spark"
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # manage /etc/hosts by hostmanager plugin(https://github.com/smdahlen/vagrant-hostmanager)
   # use vagrant-cachier to cache packages at local(https://github.com/fgrehm/vagrant-cachier)
@@ -100,15 +102,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # nodes definition
   (1..num_instances).each do |i|
     if i > 1
-      nodename = "#{CLUSTER_PREFIX}-node%03d" % i
+      nodename = "#{CLUSTER_PREFIX}-node%03d" % (i - 1)
     else
       nodename = "#{CLUSTER_PREFIX}-master"
     end
-    config.vm.define nodename.to_sym do |bigtop|
+    config.vm.define "#{nodename}" do |bigtop|
 
       bigtop.vm.box = CONF['box']
-      bigtop_hostname="#{CLUSTER_PREFIX}-#{i}"
-      bigtop_fqdn="#{bigtop_hostname}.vagrant"
+      bigtop_hostname=nodename
+      bigtop_fqdn="spark#{i}.vagrant"
       bigtop_ip="10.10.10.1#{i}"
 
       bigtop.vm.provider :virtualbox do |vb|
