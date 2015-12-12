@@ -21,7 +21,7 @@ By default, it will create one master and two worker nodes in which the Spark in
 
 ![Alt text](demo/spark1.png?raw=true "Spark instances created")
 
-- You can now vagrant ssh into the master node to run any spark job
+- Now vagrant ssh into the master node to run any spark job
 
 ```bash
 ./vagrant-spark-cluster/vagrant ssh spark-master
@@ -34,3 +34,22 @@ You will now log in the spark-master node, no run the spark-shell command and u 
 
 
 ![Alt text](demo/spark2.png?raw=true "Spark Shell")
+
+### Optional - Playing with the Spark Cluster
+- You can now follow the <a href="http://spark.apache.org/docs/latest/quick-start.html" target="_blank">Spark offical tutorial</a> to run the hello world in this Spark cluster, for example, you can do something like this:
+
+Now u can run the SparkPi program from the tutorial:
+```bash
+[vagrant@spark1 ~]$ /usr/lib/spark/bin/run-example SparkPi
+```
+
+![Alt text](demo/spark3.png?raw=true "SparkPi program output")
+
+
+Notice that the hdfs is running already and you can put something dummy stuffs into the the hdfs system, such as /tmp/
+```bash
+[vagrant@spark1 ~]$ hadoop fs -put /etc/spark/conf/spark-env.sh /tmp/
+[vagrant@spark1 ~]$ hadoop fs -ls /tmp/
+```
+
+![Alt text](demo/spark4.png?raw=true "hdfs import")
