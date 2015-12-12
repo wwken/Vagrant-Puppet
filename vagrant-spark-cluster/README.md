@@ -1,7 +1,10 @@
 This vagrant-puppet module installs and setup Apache Spark cluster with Hadoop and other dependencies.  It is based on the <a href="https://github.com/apache/bigtop" target="_blank">Apache Bigtop</a> repo and makes some customizations.  It has been fully tested on the Mac-OX environment.  It should be working the same on any Windows environment as well.
 
 ### Getting Started 
-- Clone this repo to your local drive first.
+- Clone this repo to your local directory, say github,first.
+```bash
+git clone https://github.com/wwken/Vagrant-Puppet.git ~/github
+```
 
 - Please make sure to finish the <a href="https://github.com/wwken/Vagrant-Puppet#prerequisite" target="_blank">prerequisite</a> part first to install all required softwares/components.
 
