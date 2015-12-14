@@ -34,7 +34,8 @@ $dependencies = [
   #'maven', 
   #'scala', 
   #'git', 
-  'openjdk-7-jdk'
+  'openjdk-7-jdk',
+  'hive'
 ] 
 package { $dependencies: ensure => 'present' }
 
