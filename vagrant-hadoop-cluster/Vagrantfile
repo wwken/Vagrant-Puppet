@@ -22,11 +22,13 @@
 # vi: set ft=ruby :
 
 VAGRANTFILE_API_VERSION = "2"
-NUM_BOXES = 3 #4 # first is master
+NUM_BOXES = 2 #4 # first is master
 CLUSTER_PREFIX = "hadoop"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.puppet_install.puppet_version = "3.7.4"
+
+  config.vm.synced_folder "/Users/kenwu/workspace/Spark-Apps/", "/workspace/Spark-Apps"
 
   (0...NUM_BOXES).each do |num|
       if num > 0
