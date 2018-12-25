@@ -30,6 +30,7 @@ Vagrant.configure("2") do |config|
       curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
       sudo python get-pip.py
       sudo python3 get-pip.py
+      sudo pip install pandas numpy
     SHELL
 
     node.vm.provision "shell", run: "always", inline: "/home/vagrant/spark/sbin/start-master.sh -h 172.28.128.150"
@@ -64,6 +65,7 @@ Vagrant.configure("2") do |config|
         curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
         sudo python get-pip.py
         sudo python3 get-pip.py
+        sudo pip install pandas numpy
       SHELL
 
       node.vm.provision "shell", run: "always", inline: "/home/vagrant/spark/sbin/start-slave.sh -h 172.28.128.20#{i} spark://172.28.128.150:7077"

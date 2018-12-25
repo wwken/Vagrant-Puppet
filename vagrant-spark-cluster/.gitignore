@@ -1,1 +1,3 @@
 .vagrant/
+*.tgz
+*.04-cloudimg-console.log
