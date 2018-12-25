@@ -1,36 +1,42 @@
-This vagrant-puppet module installs and setup Apache Spark cluster with Hadoop and other dependencies.  It is based on the <a href="https://github.com/apache/bigtop" target="_blank">Apache Bigtop</a> repo and makes some customizations.  It has been fully tested on the Mac-OX environment.  It should be working the same on any Windows environment as well.
+# spark_cluster_vagrant #
+Vagrant template to provision a standalone Spark cluster with lean defaults. This is a great way to set up a Spark cluster on your laptop that can easily be deleted later with no changes to your machine.
 
-### Getting Started 
-- Clone this repo to your local drive first.
+# Details #
 
-- Please make sure to finish the <a href="https://github.com/wwken/Vagrant-Puppet#prerequisite" target="_blank">prerequisite</a> part first to install all required softwares/components.
+- See `Vagrantfile` for details and to make changes.
+- Spark running as a standalone cluster. Tested with Spark 2.1.x and 2.2.x.
+- One head node Ubuntu 16.04 machine and `N` worker (slave) machines.
+- Spark running in standalone cluster mode.
 
-- After the prerequisities are done, on the project home folder (e.g. /Users/ken/github/Vagrant-Puppet) run the following command to bring up the spark cluster
+# Usage #
 
-```bash
-./vagrant-spark-cluster/vagrant up
-```
+To spin up your own local Spark cluster, clone this repository first.
 
-By default, it will create one master and two worker nodes in which the Spark instance is running on
+Next, [download a pre-built Spark package](https://spark.apache.org/downloads.html) and place it into this directory, named "spark.tgz".
 
-- Now do the vagrant status command to make sure the three virtual instances are created sucessfully
+Next, open up `Vagrantfile` in a text editor.
 
-```bash
-./vagrant-spark-cluster/vagrant status
-```
+You'll want to change the `N_WORKERS` variable near the top of the file.
 
-![Alt text](demo/spark1.png?raw=true "Spark instances created")
+Vagrant will spin up one "head node" and `N` worker nodes in a Spark standalone cluster.
 
-- You can now vagrant ssh into the master node to run any spark job
+Feel free to make other changes, e.g. RAM and CPU for each of the machines.
 
-```bash
-./vagrant-spark-cluster/vagrant ssh spark-master
-```
+When you're ready, just run `vagrant up` in the directory the `Vagrantfile` is in. Wait a few minutes and your Spark cluster will be ready.
 
-You will now log in the spark-master node, no run the spark-shell command and u will see the spark-shell
-```bash
-[vagrant@spark1 ~]$ sudo su - hdfs spark-shell
-```
+SSH in using `vagrant ssh hn0` or `vagrant ssh wn0`.
 
+You'll also be able to see the Spark WebUI at `http://172.28.128.150:8080`.
 
-![Alt text](demo/spark2.png?raw=true "Spark Shell")
+Shut down the cluster with `vagrant halt` and delete it with `vagrant destroy`. You can always run `vagrant up` to turn on or build a brand new cluster.
+
+# Testing #
+
+To run `SparkPi` on the cluster, run the following commands:
+
+    vagrant ssh hn0
+    spark-submit --class org.apache.spark.examples.SparkPi ~/spark/examples/jars/spark-examples_2.11-2.2.1.jar 1000
+
+# License #
+
+See the LICENSE.txt file.
