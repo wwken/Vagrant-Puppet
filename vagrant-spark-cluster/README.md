@@ -32,10 +32,10 @@ Shut down the cluster with `vagrant halt` and delete it with `vagrant destroy`. 
 
 # Testing #
 
-To run `SparkPi` on the cluster, run the following commands:
+To run my `PySpark-bigdata-treeset`(https://github.com/wwken/Misc_programs/blob/master/BigDataProblems/Spark-process-nyc-tree-set-statistics/processTree.py) on the cluster, run the following commands:
 
     vagrant ssh hn0
-    spark-submit --class org.apache.spark.examples.SparkPi ~/spark/examples/jars/spark-examples_2.11-2.2.1.jar 1000
+    spark-submit --queue default Spark-process-nyc-tree-set-statistics/processTree.py
 
 # License #
 
