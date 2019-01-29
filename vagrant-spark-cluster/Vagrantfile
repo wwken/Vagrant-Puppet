@@ -18,6 +18,7 @@ Vagrant.configure("2") do |config|
     node.vm.provision "shell", inline: <<-SHELL 
       apt-get install -y python-dev ntp default-jdk
       mkdir /home/vagrant/spark
+      wget https://repository.mulesoft.org/nexus/content/repositories/public/com/amazon/redshift/redshift-jdbc42/1.2.1.1001/redshift-jdbc42-1.2.1.1001.jar ~/redshift-jdbc.jar
       wget http://apache.cs.utah.edu/spark/spark-2.4.0/spark-2.4.0-bin-hadoop2.7.tgz -O /vagrant/spark.tgz
       tar xf /vagrant/spark.tgz -C /home/vagrant/spark --strip 1
       echo "export SPARK_HOME=/home/vagrant/spark" >> /home/vagrant/.bashrc
@@ -36,7 +37,7 @@ Vagrant.configure("2") do |config|
     node.vm.provision "shell", run: "always", inline: "/home/vagrant/spark/sbin/start-master.sh -h 172.28.128.150"
   end
 
-  config.vm.synced_folder "/Users/ken/workspace/MISC/BigDataProblems/Spark-process-nyc-tree-set-statistics/", "/home/vagrant/Spark-process-nyc-tree-set-statistics", create: true
+  config.vm.synced_folder "/Users/Ken/workspace/data-eng-docs/SmartAudio", "/home/vagrant/SmartAudio", create: true
 
   # worker nodes:
   (0..N_WORKERS-1).each do |i|
@@ -54,6 +55,7 @@ Vagrant.configure("2") do |config|
       node.vm.provision "shell", inline: <<-SHELL
         apt-get install -y python-dev ntp avahi-daemon default-jdk
         mkdir /home/vagrant/spark
+        wget https://repository.mulesoft.org/nexus/content/repositories/public/com/amazon/redshift/redshift-jdbc42/1.2.1.1001/redshift-jdbc42-1.2.1.1001.jar ~/redshift-jdbc.jar
         wget http://apache.cs.utah.edu/spark/spark-2.4.0/spark-2.4.0-bin-hadoop2.7.tgz -O /vagrant/spark.tgz
         tar xf /vagrant/spark.tgz -C /home/vagrant/spark --strip 1
         echo "export SPARK_HOME=/home/vagrant/spark" >> /home/vagrant/.bashrc
